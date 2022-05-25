@@ -16,16 +16,22 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+    return Inertia::render('HomePage',[
+        'title' => 'Home',
+        'message' => 'Welcome to Inertia!',
+        'name'=>'ÇağrıKaraca',
+        
     ]);
 });
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::get('/companies', function () {
+    return Inertia::render('HomePage');
+})->middleware(['auth', 'verified'])->name('companies');
 
 require __DIR__.'/auth.php';
